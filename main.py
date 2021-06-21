@@ -29,7 +29,7 @@ if __name__ == "__main__":
     sharpened_image = sharpen(denoised_image, kernel_size=(5, 5), sharpness=0.0, iterations=3)
 
     print("Clustering")
-    labels, centers = cluster_image(sharpened_image, 32)
+    labels, centers = cluster_image(sharpened_image, 8)
     print("Smoothing")
     smoothed_labels = smooth_image(labels, 3 + np.arange(3), 1)
 
