@@ -34,12 +34,14 @@ if __name__ == "__main__":
     smoothed_labels = smooth_image(labels, 3 + np.arange(3), 1)
 
     print("Drawing contours")
-    output_contours, output_labels = draw_contours(centers[smoothed_labels], smoothed_labels, 30, 6)
+    output_contours, output_labels = draw_contours(centers[smoothed_labels], smoothed_labels, min_area=100, min_radius=8, gaps_smooth=5)
+    if np.min(output_labels) < 0:
+        print("Warning: Not all pixels painted")
 
     # watershed for uncoloured parts. not cool?
-    output_labels += 1
-    cv2.watershed(sharpened_image, output_labels)
-    output_labels -= 1
+    #  output_labels += 1
+    #  cv2.watershed(sharpened_image, output_labels)
+    #  output_labels -= 1
 
     output_image = recolour(sharpened_image, output_labels)
     output_contours = cv2.cvtColor(output_contours, cv2.COLOR_GRAY2BGR)
