@@ -59,6 +59,6 @@ if __name__ == "__main__":
     stacked_image = cv2.resize(stacked_image, (h * 1500 // max(w, h), w * 1500 // max(w, h)))
 
     cv2.imshow(window_name, stacked_image)
-    while cv2.getWindowProperty(window_name, cv2.WND_PROP_VISIBLE) > 0 and cv2.waitKey(delay=100) < 0:
+    while cv2.getWindowProperty(window_name, cv2.WND_PROP_VISIBLE) > 0 and cv2.waitKey(delay=100):
         pass
     cv2.destroyWindow(window_name)
